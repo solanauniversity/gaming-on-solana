@@ -1,4 +1,4 @@
-# Introduction
+# Gaming on Solana with NFT and Circle as crypto payment gateway
 
 Blockchain is evolving with every release and there are lots of L1 blockchains which are solving real world problems.
 
@@ -7,7 +7,7 @@ Solana is one of the blockchain which has a high transaction rate per second and
 Considering these factors we are going to build a decentralized gaming platform where users will be able to play the game by paying SOL to a wallet and will be able to create the NFT for the game scores.
 
 
-# Features
+### Features
 
 The decentralized application will include the following features 
 
@@ -19,7 +19,7 @@ The decentralized application will include the following features
 6. Creation of NFT after game ends
 
 
-# Topics which will be learnt in this Quest
+### Topics which will be learnt in this Quest
 
 In this tutorial we learnt multiple concepts about Solana
 
@@ -36,22 +36,22 @@ In this tutorial we learnt multiple concepts about Solana
 11. What is NFT and how it is different from regular tokens
 
 
-# Prerequisites
+### Prerequisites
 
 Although the tutorial doesn’t require you to know everything, still having basic knowledge of React, Web3 and Solana Blockchain will be of great help.
 
 Do not worry even if you do not have experience because we will try to explain most of the basic things in this tutorial.
 
 
-# Requirements
+### Requirements
 
 As such no requirements, only a good code editor will work. I prefer to use VS Code.
 
+## Subquest : Setting up
 
-# Folder structure
+### Folder structure
 
-**Folder structure expected of the react app to run this tutorial**
-
+**Folder structure of the frontend app expected of the react app to run this tutorial**
 
 * App name is "solana-games"
     * App-Name
@@ -79,25 +79,25 @@ As such no requirements, only a good code editor will work. I prefer to use VS C
         * package.json
 
 
-# Flow of the DApp
+## Subquest: Flow of the DApp
 
-![Solana Games](learn_src/learn_assets/Solana_Games.png?raw=true)
+![Solana Games](https://raw.githubusercontent.com/CreatorOS/gaming-on-solana-with-nft-and-circle-as-crypto-payment-gateway/main/learn_src/learn_assets/Solana_Games.png?raw=true)
 
 
-# Accept fees from the game player
+## Subquest: Accept fees from the game player
 The DApp (Decentralised Application) which we are building accepts the payment in the form of SOL tokens and lets users play the game after they have paid.
 The tokens which we receive can be interpreted as a game fee. The same model can be applied to any DApp which can provide service after receiving the payment.
 To make the payment to the DApp possible, we will first integrate the Phantom wallet which will enable users to send the payment.
 
-## Why we are using Circle API to accept the payment
+### Why we are using Circle API to accept the payment
 Circle is one of the leading crypto payment gateway which can be used accept the payment in fiat currency (USD) and then Circle automatically converts the currency to different crypto currency like ETH or SOL.
 The API document is user friendly and easy to integrate, hence going with Circle is one of the default choice for the upcoming DApps.
 
-## Generate Circle API token for sandbox environment
+### Generate Circle API token for sandbox environment
 1. [Circle API Sandbox environment](https://developers.circle.com/docs/circle-apis-production-sandbox-environments)
 2. [Circle API sandbox token](https://my-sandbox.circle.com/signup)
 
-## Importants APIs to accept the payment in fiat (USD)
+### Importants APIs to accept the payment in fiat (USD)
 
 1. **/v1/encryption/public**: This API endpoint is the first endpoint which needs to be called with the **Circle API Token** to receive the unique `publicKey` and `keyId` for the transaction to be processed.
 
@@ -163,7 +163,7 @@ Please find below the sample reponse of the API
 ```
 
 
-## Importants functions to accept the payment in fiat (USD)
+### Importants functions to accept the payment in fiat (USD)
 
 1. **fetchPCIKeys**: 
 ```javascript
@@ -443,7 +443,7 @@ The API expects two parameters
 1. `solAmount`: Amount which needs to be transferred in SOL only. (No lamports conversion)
 2. `toPublicKey`: Public key of the user's wallet which will receive the amount in SOL.
 
-## Connect to the phantom wallet
+## Subquest: Connect to the phantom wallet
 
 To transfer the SOL from your wallet to the game's wallet, you first need to connect to the wallet.
 
@@ -497,7 +497,7 @@ Use the provider instance as the owner of all subsequent transactions.
 
 Now that the provider is set, we can use the provider instance for all subsequent transactions. When the user connects their wallet, then it becomes important to assign the provider which can be used throughout the dApp to sign transactions.
 
-## Signing the transaction
+### Signing the transaction
 
 **Once we are ready with transaction, then to sign the transaction is important - signTransaction**
 
@@ -531,7 +531,7 @@ This is very different and efficient from the **Proof of Work** or **Proof of St
 **transaction.feePayer** : This variable denotes the fee payer of the transaction which will pay the fees to sign the transaction and send it for validation
 
 
-## Connection provider to the Phantom Wallet
+### Connection provider to the Phantom Wallet
 
 In the utility function below, we are trying to connect to the wallet if it is not connected already.
 
@@ -561,7 +561,7 @@ export const connectOrGetPhantomProvider = (connectToWallet) => {
 };
 ```
 
-## Transfer SOL from user wallet to Game’s wallet
+### Transfer SOL from user wallet to Game’s wallet
 
 To transfer the SOL from the user’s wallet to game’s wallet we need to create the new transaction which will hold the information about the sender of the SOL, receiver of the SOL and the amount of the SOL.
 
@@ -622,12 +622,12 @@ export const transferCustomToken = async (provider, connection, tokenToTransfer,
 }
 ```
 
-# How to create the NFT on Solana
+## Subquest: How to create the NFT on Solana
 A non-fungible token (NFT) is a unique and non-interchangeable unit of data stored on a blockchain, a form of digital ledger. So to make ourselves pride by possessing the one and only scorecard of our gameplay we will convert our scores into a NFT.
 Once we convert it to NFT, then we can claim the highest score made while playing the game.
 Let's dive into the NFT creation process in Solana. 
 
-## Create NFT util functions
+### Create NFT util functions
 
 NFT stands for non-fungible token, which basically means that it's a one-of-a-kind digital asset that belongs to you and you only. The most popular NFTs right now include artwork and music, but can also include videos and even tweets.
 
@@ -720,7 +720,7 @@ export const TOKEN_PROGRAM_ID = programIds.token
 Other variables mentioned are the predefined standards from Metaplex which internally uses an on-chain program to store all the metadata and artifacts of the NFT.
 
 
-# On-chain program’s data structures
+### On-chain program’s data structures
 
 On-chain programs written in Rust expect the data passed to them to be in 'struct' format.
 The class needs to be created to use in Web3 (JavaScript), but to send it through the transaction first the 'class' data structure needs to be converted to 'struct' data structure and then serialized (so it can be sent over the network) via the borsh serializer.
@@ -850,7 +850,7 @@ class CreateMetadataArgs {
 
 
 
-## HTML DOM to Image util function
+### HTML DOM to Image util function
 
 To create NFT which can hold the image as the metadata we need to provide the image in the form of base64 encoded string and from base64 to file object which eventually gets uploaded to Arweave.
 
@@ -874,7 +874,7 @@ export const dataURLtoFile = (dataurl, filename) => {
 ```
 
 
-## Borsh extended functionality
+### Borsh extended functionality
 
 This functionality is provided by the Metaplex team where they added an extra util function to the BinaryReader to make the communication seamless with Metaplex on-chain programs.
 
@@ -1316,7 +1316,7 @@ Deterministic function is needed because it will help to deduplicate any associa
 
 
 
-# Transaction which needs to be signed 
+### Transaction which needs to be signed 
 
 **sendTransactionWithRetry:** Used to retry the transaction in case of failure. While doing any transaction in blockchain there is always a chance of transaction failure and it can lead to bad user experience if it fails in the first go. Hence this function helps to re-initiate the transaction in case of failure.
 
@@ -1822,21 +1822,21 @@ For Solana programs, Rust only supports the struct data structure hence the 'cla
 
 
 
-# Steps to setup up the base repo
+## Subquest: Steps to setup up the base repo
 
-## Clone the React app
+### Clone the React app
 1. Clone the frontend repo from https://github.com/solanauniversity/solana-games
 1.1 Add the environment variables in .env file
 1.1.1 `REACT_APP_BASE_APP` : http://localhost:3000/api  (recommended port)
 1.1.2 `REACT_APP_CIRCLE_API_AUTH_KEY` : (Token received from the Circle API sandbox environment)
 
-## Setting up the Phantom wallet
+### Setting up the Phantom wallet
 
 1. Install Phantom wallet extension (it supports Chrome, Brave, Firefox and Edge browsers)
 2. Add some SOL to the wallet.
 3. SOL can be added via Circle payment gateway as well from the game's menu.
 
-## Connecting the application to a Phantom Wallet
+### Connecting the application to a Phantom Wallet
 
 ```javascript
 /* File: index.js */
@@ -2010,16 +2010,14 @@ export default App;
 5. Add the source code for the game we want to integrate with our application
     Check the source code of the game at : https://github.com/solanauniversity/solana-games
 
-# What's Next
+## Subquest: What's Next?
 
 * Once you complete the above tutorial then you can build any pay per use platform for the end users. 
 * You can provide services against which you can charge some from the users.
 * You can extend the solana games learning and build your gaming platform.
-* You can use the knowledge of NFT creation and build NFT marketplaces like opensea
+* You can use the knowledge of NFT creation and build NFT marketplaces like solsea 
 
-If interested to know more about him, please visit https://github.com/blocksan
-
-# References
+## Subquest: References referred to while working on this quest
 
 1. [Solgames.fun - Superset of this tutorial](https://solgames.fun/) 
 2. [Solana Docs](https://docs.solana.com)
