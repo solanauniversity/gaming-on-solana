@@ -81,7 +81,7 @@ As such no requirements, only a good code editor will work. I prefer to use VS C
 
 ## Subquest: Flow of the DApp
 
-![Solana Games](https://raw.githubusercontent.com/CreatorOS/gaming-on-solana-with-nft-and-circle-as-crypto-payment-gateway/main/learn_src/learn_assets/Solana_Games.png?raw=true)
+![Solana Games](https://raw.githubusercontent.com/solanauniversity/gaming-on-solana/main/learn_src/learn_assets/Solana_Games.png?raw=true)
 
 
 ## Subquest: Accept fees from the game player
@@ -1553,7 +1553,7 @@ Associated token is needed to mint the new token and add the metadata data to th
 
 
 
-# Schema mapping of the required classes
+### Schema mapping of the required classes
 
 For Solana programs, Rust only supports the struct data structure hence the 'classes' need to be converted to 'struct' to perform valid serialization and deserialization.
 
