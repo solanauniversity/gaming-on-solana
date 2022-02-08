@@ -47,7 +47,7 @@ Do not worry even if you do not have experience because we will try to explain m
 
 As such no requirements, only a good code editor will work. I prefer to use VS Code.
 
-## Subquest : Setting up
+## Setting up
 
 ### Folder structure
 
@@ -79,12 +79,12 @@ As such no requirements, only a good code editor will work. I prefer to use VS C
         * package.json
 
 
-## Subquest: Flow of the DApp
+## Flow of the DApp
 
 ![Solana Games](https://raw.githubusercontent.com/solanauniversity/gaming-on-solana/main/learn_src/learn_assets/Solana_Games.png?raw=true)
 
 
-## Subquest: Accept fees from the game player
+## Accept fees from the game player
 The DApp (Decentralised Application) which we are building accepts the payment in the form of SOL tokens and lets users play the game after they have paid.
 The tokens which we receive can be interpreted as a game fee. The same model can be applied to any DApp which can provide service after receiving the payment.
 To make the payment to the DApp possible, we will first integrate the Phantom wallet which will enable users to send the payment.
@@ -443,7 +443,7 @@ The API expects two parameters
 1. `solAmount`: Amount which needs to be transferred in SOL only. (No lamports conversion)
 2. `toPublicKey`: Public key of the user's wallet which will receive the amount in SOL.
 
-## Subquest: Connect to the phantom wallet
+## Connect to the phantom wallet
 
 To transfer the SOL from your wallet to the game's wallet, you first need to connect to the wallet.
 
@@ -622,7 +622,7 @@ export const transferCustomToken = async (provider, connection, tokenToTransfer,
 }
 ```
 
-## Subquest: How to create the NFT on Solana
+## How to create the NFT on Solana
 A non-fungible token (NFT) is a unique and non-interchangeable unit of data stored on a blockchain, a form of digital ledger. So to make ourselves pride by possessing the one and only scorecard of our gameplay we will convert our scores into a NFT.
 Once we convert it to NFT, then we can claim the highest score made while playing the game.
 Let's dive into the NFT creation process in Solana. 
@@ -1822,7 +1822,7 @@ For Solana programs, Rust only supports the struct data structure hence the 'cla
 
 
 
-## Subquest: Steps to setup up the base repo
+## Steps to setup up the base repo
 
 ### Clone the React app
 1. Clone the frontend repo from https://github.com/solanauniversity/solana-games
@@ -2010,14 +2010,14 @@ export default App;
 5. Add the source code for the game we want to integrate with our application
     Check the source code of the game at : https://github.com/solanauniversity/solana-games
 
-## Subquest: What's Next?
+## What's Next?
 
 * Once you complete the above tutorial then you can build any pay per use platform for the end users. 
 * You can provide services against which you can charge some from the users.
 * You can extend the solana games learning and build your gaming platform.
 * You can use the knowledge of NFT creation and build NFT marketplaces like solsea 
 
-## Subquest: References referred to while working on this quest
+## References referred to while working on this quest
 
 1. [Solgames.fun - Superset of this tutorial](https://solgames.fun/) 
 2. [Solana Docs](https://docs.solana.com)
